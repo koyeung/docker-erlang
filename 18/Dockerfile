@@ -1,9 +1,9 @@
-FROM armhf/alpine:3.3
+FROM alpine:3.3
 MAINTAINER King-On Yeung <koyeung@gmail.com>
 
-ENV OTP_VERSION=18.2.4
+ENV OTP_VERSION=18.3.1
 ENV REBAR_VERSION=2.6.1
-ENV REBAR3_VERSION="3.0.0"
+ENV REBAR3_VERSION=3.1.0
 
 RUN set -xe \    
     && export LANG=C.UTF-8 \
@@ -13,7 +13,7 @@ RUN set -xe \
          musl-dev libc-dev \
          unixodbc-dev ncurses-dev openssl-dev \
     && OTP_DOWNLOAD_URL="https://github.com/erlang/otp/archive/OTP-$OTP_VERSION.tar.gz" \
-    && OTP_DOWNLOAD_SHA1="4c8d90feb15b58c6b5929413b056c419166d7fc4" \
+    && OTP_DOWNLOAD_SHA1="773e051359e41f3e5a765c11dc03b3fcfd5ae5d3" \
     && wget -q "$OTP_DOWNLOAD_URL" -O otp-src.tar.gz \
     && echo "$OTP_DOWNLOAD_SHA1  otp-src.tar.gz" | sha1sum -c - \
     && mkdir -p /usr/src/otp-src \
@@ -41,7 +41,7 @@ RUN set -xe \
     && rm -rf /usr/src/rebar-src \
     && echo finished for REBAR \
     && REBAR3_DOWNLOAD_URL="https://github.com/rebar/rebar3/archive/${REBAR3_VERSION##*@}.tar.gz" \
-    && REBAR3_DOWNLOAD_SHA1="4228c9c39ee45561972b160f6e9476ce47ebf793" \
+    && REBAR3_DOWNLOAD_SHA1="f7c185bcde44f4d3044cf8d6eb175ca171580e59" \
     && mkdir -p /usr/src/rebar3-src \
     && wget -q "$REBAR3_DOWNLOAD_URL" -O rebar3-src.tar.gz \
     && echo "$REBAR3_DOWNLOAD_SHA1  rebar3-src.tar.gz" | sha1sum -c - \
